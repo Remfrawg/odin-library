@@ -69,12 +69,13 @@ function addListeners(deleteButton, readButton){
        if ( oldRead == true ){
            newHaveRead = false;
        }else{
-           newHaveRead = true;
+            newHaveRead = true;
+            let changeCard = document.getElementById(`${this.id}`);
+            changeCard.style.backgroundColor = "#CCCCCC";
+            changeCard.style.color = "#333333";
        }
        library[this.id].read = newHaveRead;
-       let changeCard = document.getElementById(`${this.id}`);
-       changeCard.style.backgroundColor = "#CCCCCC";
-       changeCard.style.color = "#333333";
+       
        createDisplay();
     });
 };
