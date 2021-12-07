@@ -48,6 +48,7 @@ function createCard(book){
     newDiv.innerHTML = `${book.info()}`;
     if (book.read == true){
         newDiv.style.backgroundColor = "#CCCCCC";
+        newDiv.style.color = "#333333";
     }
     return newDiv;
 }
@@ -73,20 +74,16 @@ function addListeners(deleteButton, readButton){
        library[this.id].read = newHaveRead;
        let changeCard = document.getElementById(`${this.id}`);
        changeCard.style.backgroundColor = "#CCCCCC";
+       changeCard.style.color = "#333333";
        createDisplay();
     });
 };
 
-
-
-
-//add book button brings form to the front
 const addBookButton = document.querySelector('.addNew');
 addBookButton.addEventListener('click', ()=>{
     document.querySelector(".bgModal").style.display = "flex";
 });
 
-//when someone click submit on the form
 const submit = document.querySelector(".submit");
 submit.addEventListener('click', ()=>{
     document.querySelector(".bgModal").style.display = "none";
