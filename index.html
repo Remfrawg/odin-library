@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Odin-Library</title>
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -14,10 +14,9 @@
     <div class = "libraryContainer"></div>
     <div class="bgModal">
         <div class="modalContent">
-            <div class="close">+ </div>
+            <div class="close" onclick="closeForm()">+ </div>
             <div class="form">
                 <h3>New Book</h3>
-                
                 <input type="text" class ="title" placeholder="Book Title">
                 <input type="text" class="author" placeholder="Author">
                 <input type="number" class="pagesRead" placeholder="Pages Read">
@@ -27,5 +26,6 @@
             </div>
         </div>
     </div>
+    <div id="footer">Developed by Remy Nguyen December 5, 2021</div>
 </body>
 </html>

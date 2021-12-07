@@ -1,23 +1,18 @@
-//Book constructor 
+//js for the library odin project 
 function Book(title, author, pages, read){
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
-    //this.haveRead = haveRead;
     this.id = library.length;
-    //alert(haveRead);
     this.getId = () => {return id};
     this.info = () => {
         return `Title: ${title} <br> Author: ${author} <br> Pages read: ${pages} <br> Read before: ${this.read} <br>`
     }
 };
-// test books
 
-
-//Array of books
 let library = new Array();
-//puts books in array
+
 function addBookToLibrary(book){
     library.push(book);
 }
@@ -36,24 +31,31 @@ function addToDisplay(book){
         libraryContainer.appendChild(newDiv);
         const deleteButton = document.createElement('button');
         deleteButton.innerText="Delete";
-        deleteButton.classList.add("deleteButtons");
         deleteButton.setAttribute('id',`${book.id}`);
+        deleteButton.classList.add("cardButtons");
         const readButton = document.createElement('button');
         readButton.innerText = "Read";
-        readButton.classList.add("readButtons");
+        readButton.classList.add("cardButtons");
         readButton.setAttribute('id',`${book.id}`);
         addListeners(deleteButton, readButton);
         newDiv.appendChild(readButton);
         newDiv.appendChild(deleteButton);
 };
 
+function createCard(book){
+    var newDiv = document.createElement('div');
+    newDiv.classList.add('libraryCards');
+    newDiv.innerHTML = `${book.info()}`;
+    if (book.read == true){
+        newDiv.style.backgroundColor = "#CCCCCC";
+    }
+    return newDiv;
+}
+
 function addListeners(deleteButton, readButton){
     deleteButton.addEventListener('click', function (){
         library.splice(this.id, 1);
         const n = this.id;
-        //const removal = document.getElementById(this.id);
-        //libraryContainer.removeChild(removal);
-        //alert(n);
         for (let i = this.id;i<library.length; i++){
             library[i].id -=1;
         }
@@ -63,34 +65,28 @@ function addListeners(deleteButton, readButton){
     readButton.addEventListener('click',function (){
        let newHaveRead;
        let oldRead = library[this.id].read;
-       console.log("pre read :" + library[this.id].read);
        if ( oldRead == true ){
            newHaveRead = false;
        }else{
            newHaveRead = true;
        }
-       console.log("new read :" +newHaveRead);
        library[this.id].read = newHaveRead;
-       console.log("after read :" + library[this.id].read);
+       let changeCard = document.getElementById(`${this.id}`);
+       changeCard.style.backgroundColor = "#CCCCCC";
        createDisplay();
     });
 };
-////addToDisplay(newBook);
-//addToDisplay(newBook2);
-//creates the card to add to the display
-function createCard(book){
-    var newDiv = document.createElement('div');
-    newDiv.classList.add('libraryCards');
-    newDiv.innerHTML = `${book.info()}`;
 
-    return newDiv;
-}
-//add new button bringing form to the front
+
+
+
+//add book button brings form to the front
 const addBookButton = document.querySelector('.addNew');
 addBookButton.addEventListener('click', ()=>{
     document.querySelector(".bgModal").style.display = "flex";
 });
-//when someone submits a new book to be added to the display
+
+//when someone click submit on the form
 const submit = document.querySelector(".submit");
 submit.addEventListener('click', ()=>{
     document.querySelector(".bgModal").style.display = "none";
@@ -101,26 +97,23 @@ submit.addEventListener('click', ()=>{
     let addedBook = new Book(title,author,pages,haveRead);
     addBookToLibrary(addedBook);
     addToDisplay(addedBook);
-    
+    resetForm();
 });
 
-function hasRead(onOff){
-    if (onOff == "on"){
-        return true;
-    }
-    return false;
+function resetForm(){
+    document.querySelector('.title').value = "";
+    document.querySelector('.author').value = "";
+    document.querySelector('.pagesRead').value = null;
+    document.querySelector('.haveRead').checked = false;
 };
 
-newBook = new Book('Art of Idiocracy', 'Remy Nguyen', 199, "on");
-newBook2 = new Book('The Stoked Sibling', 'Genevieve Nguyen', 399, "off");
-newBook3 = new Book('test', 'dsfdsfds', 34499, "on");
-
-//removeAllBooks();
+function closeForm(){
+    document.querySelector(".bgModal").style.display = "none";
+    resetForm();
+};
 
 function removeAllBooks(){
     while (libraryContainer.lastChild){
-        console.log("removing book: " + libraryContainer.firstChild.title);
         libraryContainer.removeChild(libraryContainer.lastChild);
     };
-    console.log("removed books, library length: " + library.length);
 };

@@ -1,49 +1,10 @@
 # odin-library
-add a delete book button
-make the exit button work on the form
-add a read unread toggle option on the book page
+This project ties in object manipulation with DOM manipulation, to create a CRUD (kind of) application. The books in the DOM/viewer can be created and deleted and the internal array reflects those changes. 
+
+Overall this project was challenging as it was the first object oriented project I've done, and the main obstacles were understanding what i could call `this.` on and how to keep the DOM and array in sync.
+
+I felt like I was able to identify what wasn't working in the code faster than on previous projects and have gained a deeper understanding for how the different moving parts interact. Oh and I made a form for the first time, that was a trip. Surprisingly few hiccups with that. 
+
+I chose to use createDisplay() rebuild the library after an element is deleted instead of changing the 2 button ids, library id, and div id of all the books after the element deleted from the array. Might be slightly less efficient for huge libraries but it makes sense for this one. In the future I'd like to learn how to make sliding Id's? or just how to target things without calling ids at all, just use `this` or something. 
 
 
-
-Thoughts --
-There's two processes here:
-adding the books to a internal library
-adding them to the DOM
-These work independently 
-The internal library keeps track of which element is being added to the dom through the id, which is it's position in the array
-
-can i cycle through the array and call the add to display function?
-
-
-read button:
-will change the read status to the opposite
-will change the dom element's textinfo to the new book.info
-
-delete button:
-find the dom element in the array
-delete it from the array
-maybe it can select the child in the dom and delete that child? 
-Maybe I just have to reload all of the dom elements 
-
-todo:
-make the read button work
-form formatting
-form exit button 
-css
-
-
-addBookToLibrary(newBook);
-addToDisplay(newBook);
-addBookToLibrary(newBook2);
-addToDisplay(newBook2);
-addBookToLibrary(newBook3);
-addToDisplay(newBook3);
-
-Lessons learned:
-    creating forms 
-    first object oriented program
-    adding an index id to objects
-    pushing those objects to the screen
-        manipulating the DOM with the stored objec
-    
-I chose to rebuild the library after an element is deleted instead of changing the 2 button, library id, and div id of all the books after the element deleted. Might be slightly less efficient for huge libraries but it makes sense for this one. In the future I'd like to learn how to make sliding Id's? or just how to target things without calling ids at all, just use `this` or something. 
